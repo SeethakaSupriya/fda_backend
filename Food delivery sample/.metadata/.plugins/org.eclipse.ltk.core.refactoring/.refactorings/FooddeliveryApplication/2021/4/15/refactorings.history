@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.cg.fda.service.FOodCartServiceTest&apos; to &apos;FoodCartServiceTest&apos;&#x0D;&#x0A;- Original project: &apos;FooddeliveryApplication&apos;&#x0D;&#x0A;- Original element: &apos;com.cg.fda.service.FOodCartServiceTest&apos;&#x0D;&#x0A;- Renamed element: &apos;com.cg.fda.service.FoodCartServiceTest&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;FOodCartServiceTest&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/test\/java=/optional=/true=/=/maven.pomderived=/true=/=/test=/true=/&lt;com.cg.fda.service{FOodCartServiceTest.java[FOodCartServiceTest" matchStrategy="1" name="FoodCartServiceTest" qualified="false" references="true" similarDeclarations="false" stamp="1617630359054" textual="false" version="1.0"/>
+</session>

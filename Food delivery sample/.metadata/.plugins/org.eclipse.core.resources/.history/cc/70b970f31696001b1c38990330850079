@@ -1,0 +1,49 @@
+package com.cg.fda.service;
+import static org.junit.Assert.assertEquals;
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.cg.fda.exception.FoodCartIdNotFoundException;
+import com.cg.fda.domain.FoodCart;
+import com.cg.fda.repository.FoodCartRepository;
+
+import static org.assertj.core.api.Assertions.assertThat;
+/**
+ * 
+ * @author supriya
+ *
+ */
+@RunWith(SpringRunner.class)
+@SpringBootTest
+
+public class FoodCartServiceTest {
+	@Autowired
+	private FoodCartService foodcartService;
+	@MockBean
+	private FoodCartRepository foodcartRepository;
+	@Test
+	void addProduct() {
+		FoodCart foodcart=new FoodCart();
+		foodcart.setFoodCartId(1);
+		foodcart.setFoodItemName("biryani");
+		foodcart.setFoodItemQuantity("5");
+		foodcart.setFoodItemPrice(200);
+		
+		
+		Mockito.when(foodcartRepository.save(foodcart)).thenReturn(foodcart);
+        assertThat(foodcartService.addFoodCarts(foodcart)).isEqualTo(foodcart);
+		
+		}
+
+
+}

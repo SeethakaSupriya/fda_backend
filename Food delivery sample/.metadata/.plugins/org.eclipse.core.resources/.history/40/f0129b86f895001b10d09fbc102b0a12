@@ -1,0 +1,62 @@
+package com.cg.fda.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import io.swagger.annotations.ApiModelProperty;
+
+
+
+/**
+ * @author supriya
+ *
+ */
+@Entity
+public class FoodCart {
+	
+	
+	@Id	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int FoodCartId;
+	@NotBlank(message="Name should not be null.")
+	@ApiModelProperty(required=true)
+	private String foodItemName;	
+	
+	@NotNull(message="There won't be a food item will zero price.")
+	@ApiModelProperty(required=true)
+	private String foodItemQuantity;	
+	@NotNull(message="There will be always some quantity ")
+	private int foodItemPrice;
+	public int getFoodCartId() {
+		return FoodCartId;
+	}
+	public void setFoodCartId(int foodCartId) {
+		FoodCartId = foodCartId;
+	}
+	public String getFoodItemName() {
+		return foodItemName;
+	}
+	public void setFoodItemName(String foodItemName) {
+		this.foodItemName = foodItemName;
+	}
+	public String getFoodItemQuantity() {
+		return foodItemQuantity;
+	}
+	public void setFoodItemQuantity(String foodItemQuantity) {
+		this.foodItemQuantity = foodItemQuantity;
+	}
+	public int getFoodItemPrice() {
+		return foodItemPrice;
+	}
+	public void setFoodItemPrice(int foodItemPrice) {
+		this.foodItemPrice = foodItemPrice;
+	}
+	@Override
+	public String toString() {
+		return "FoodCart [FoodCartId=" + FoodCartId + ", foodItemName=" + foodItemName + ", foodItemQuantity="
+				+ foodItemQuantity + ", foodItemPrice=" + foodItemPrice + "]";
+	}
+}

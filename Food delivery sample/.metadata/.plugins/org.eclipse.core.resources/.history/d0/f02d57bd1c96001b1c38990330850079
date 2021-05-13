@@ -1,0 +1,72 @@
+package com.cg.fda.web;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Assert;
+
+import org.junit.jupiter.api.Test;
+
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import com.cg.fda.domain.FoodCart;
+import com.cg.fda.service.FoodCartService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+public class FoodCartWebTest {
+
+	@Autowired
+	    private MockMvc mockMvc;
+		
+		  @MockBean
+		  private FoodCartService foodcartService;
+		  
+		 
+	 @Test
+	void  testAddProduct() throws Exception {
+		
+		  FoodCart foodcart= new  FoodCart(); 
+		  String uri="/api/v2/ FoodCarts";
+		  foodcart.setFoodCartId(1);
+		  foodcart.setFoodItemName("Biryani");
+		  foodcart.setFoodItemQuantity("2");
+		  foodcart.setFoodItemPrice(200);
+		  
+		  String jsonInput=this.converttoJson(foodcart);
+		  Mockito.when(foodcartService.addFoodCarts(Mockito.any(FoodCart.class))).thenReturn(foodcart);
+		  MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.post(uri)
+		                            .accept(MediaType.APPLICATION_JSON)
+		                            .content(jsonInput)
+		                            .contentType(MediaType.APPLICATION_JSON))
+				                    .andReturn();
+		  
+			
+			 
+			  Assert.assertEquals(HttpStatus.CREATED.value(),mvcResult.getResponse().getStatus());
+		 
+		}
+	 private String converttoJson(Object product) throws JsonProcessingException {
+			ObjectMapper objectMapper = new ObjectMapper();
+	        return objectMapper.writeValueAsString(product);
+		}
+
+	 
+}
+
